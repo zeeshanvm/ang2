@@ -1,0 +1,111 @@
+<!doctype html>
+<html ng-app="eventsApp">
+<head lang="en">
+    <meta charset="utf-8">
+    <title>Events Registraiton</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css"/>
+
+    <link  rel="stylesheet" href="css/app.css"/>
+
+</head>
+<title>
+
+
+</title>
+<body>
+<div class="container">
+    <div class="navbar">
+        <div class="navbar-inner">
+             <ul class="nav">
+                <li ><a href="NewEvent.html">New Event </a> </li>
+             </ul>
+
+        </div>
+    </div>
+    <div ng-controller="EventController" >
+      <img ng-src="{{event.imageUrl}}" alt="{{event.name}}" style="padding-left:20px; padding-right:20px" />
+        <div class="row">
+            <div class="spann11">
+                <!--<h2> {{event.name}}</h2>-->
+                <h2 ng-bind-template="{{event.name}} {{event.date}}"></h2>
+            </div>
+
+        </div>
+        <div class="btn" ng-disabled="disabled" >Disabled</div>
+        <!--<select ng-->
+        <div>
+            <h4 ng-hide="booleanvalue">HideValue</h4>
+            <h4 ng-show="booleanvalue">Show this</h4>
+        </div>
+        <div ng-bind-html="snippet">Some Snippet Text</div>
+        <div class="row">
+            <div class="span3">
+                <div> <strong>Date: </strong>{{event.date}}</div>
+                <div> <strong>Time: </strong>{{event.time}}</div>
+            </div>
+            <div class="span4">
+                
+                    <strong>Address :{{ event.location.Address}} </strong></br>
+                {{ event.location.city}}<br>
+                {{ event.location.province}}
+
+                </address>
+            </div>
+
+        </div>
+        <hr/>
+        <h3>Sessions</h3>
+        <ul class="thumbnails">
+            <li ng-repeat="session in event.sessions  | orderBy:sortby"  >
+
+               <div class="row session">
+                   <div class="span0 well votingWidget">
+                       <div class="votingButton"  ng-click="upvotingSeeion(session)">
+                           <i class="icon-chevron-up icon-white"></i>
+
+                       </div>
+                       <div class="badge badge-inverse">
+                           <div>{{session.upVoteCount}}</div>
+
+                       </div>
+                       <div class="votingButton" ng-click="downvotingSeeion(session)">
+                           <i class="icon-chevron-down "></i>
+
+                       </div>
+
+
+
+                   </div>
+                   <div class="well span9">
+                       <h4 class="well-title">{{session.name}}</h4>
+                       <p>{{session.abstract}}</p>
+                     </div>
+
+               </div>
+
+            </li>
+
+
+        </ul>
+
+
+
+
+    </div>
+
+    </div>
+    <script src="lib/jquery.min.js"></script>
+    <script src="lib/underscore-1.4.4.min.js"></script>
+
+    <script src="lib/angular/angular.js"></script>
+    <script src="lib/angular/angular-sanitize.js"></script>
+    <script src="lib/angular/angular-resource.js"></script>
+    <script src="js/app.js"></script>
+
+    <script src="js/controllers/EventController.js"></script>
+    <script src="js/services/EventData.js"></script>
+    <script src="lib/bootstrap.min.js"></script>
+    <!--<script src="app/lib/bootstrap.min.js"></script>-->
+
+    </body>
+    </html>
